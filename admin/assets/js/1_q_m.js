@@ -1,6 +1,7 @@
 
 
-export let q_model_body_1 = `
+function q_model_body_1(nNum, qNum){ 
+    let output = `
 <section>
     <div class="container-fluid mt-5 px-0" style="max-width: 920px;">
         <div class="card">
@@ -44,7 +45,9 @@ export let q_model_body_1 = `
         </div>
     </div>
 
-</section>
+</section>`
 
+    return output;
+}
 
-`
+export {q_model_body_1}

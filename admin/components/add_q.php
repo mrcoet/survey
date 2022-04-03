@@ -5,10 +5,11 @@
 
 </div>
 <div>
-<section>
 
-<div class="dropdown my-5">
-  <button class="btn bg-survey dropdown-toggle w-100" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+<section >
+
+<div class="dropdown my-5 text-center m-auto" style="max-width: 920px;">
+  <button class="btn bg-survey dropdown-toggle w-100"  type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
     Dropdown button
   </button>
   <ul class="dropdown-menu w-100" aria-labelledby="dropdownMenuButton1">

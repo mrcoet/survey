@@ -12,20 +12,23 @@ import {q_model_body_3} from './3_q_m.js';
 import {q_model_body_4} from './4_q_m.js';
 
 
+// Model 1  ==================================================
 
 function add_model_1(){
     // var last_element = my_array[my_array.length - 1];
     let lastElement = getTinker();
-    console.log(lastElement);
+    $('#survey-body').append(q_model_body_1(1, lastElement));
 
-
-    $('#survey-body').append(q_model_body_1);
 }
+
+
+
+// Model 2  ==================================================
 
 function add_model_2(){
     
     let lastElement = getTinker();
-    console.log(lastElement);
+    
 
     $('#survey-body').append(q_model_body_2(2, lastElement));
     
@@ -64,20 +67,61 @@ function add_model_2(){
     });
 }
 
+// Model 3  ==================================================
+
 function add_model_3(){
 
     let lastElement = getTinker();
-    console.log(lastElement);
+    
 
-    $('#survey-body').append(q_model_body_3);
+    $('#survey-body').append(q_model_body_3(3, lastElement));
+    
+    let tagNam = "#m_"+3+"_add_q_"+lastElement;
+    
+    $(tagNam).on('click', function(){
+        console.log('Fuck');
+        let tagNam = "#m_"+3+"_choices_panel_q_"+lastElement;
+        let classNam = "m_"+3+"_closable_q_"+lastElement;
+        let counter = $("#m_3_counter_q_"+lastElement).val();
+        counter = parseInt(counter) + 1;
+        let btnId = "m_3_add_q_"+lastElement+"_c_"+counter;
+        $("#m_3_counter_q_"+lastElement).val(counter);
+        let new_input = `
+        <div>
+            <div class="d-flex `+classNam+`_c_`+counter+` px-0  mt-2">
+                <input type="text" class="form-control w-50">
+                <button type="button"  class="btn btn-primary mx-3" id="`+btnId+`" style="background-color: #7E202C; border-color: #7E202C;"><i class="bi bi-trash h6"></i></button>
+            </div>
+        </div> 
+        
+        `;
+        
+
+        $(tagNam).append(new_input);
+
+        $("#"+btnId).on('click', function(){
+            console.log('fuuuuu');
+            $(".m_"+3+"_closable_q_"+lastElement+"_c_"+counter).parent().empty();
+            counter = $("#m_3_counter_q_"+lastElement).val();
+            counter = parseInt(counter) - 1;
+            $("#m_3_counter_q_"+lastElement).val(counter);
+        });
+        
+     
+    });
 }
+
+
+// Model 4  ==================================================
 
 function add_model_4(){
     let lastElement = getTinker();
-    console.log(lastElement);
-    $('#survey-body').append(q_model_body_4);
+    
+    $('#survey-body').append(q_model_body_4(4, lastElement));
 }
 
+
+// ===================================================================================
 
 $('#choose_model_1').on('click', add_model_1);
 $('#choose_model_2').on('click', add_model_2);

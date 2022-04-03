@@ -1,10 +1,13 @@
-
-export let q_model_body_3 = `
+function q_model_body_3(mNum, qNum) {
+    let add_input = mNum+","+qNum;
+    let tagNam = "m_"+mNum+"_add_q_"+qNum;
+    let classNam = "m_"+mNum+"_choices_panel_q_"+qNum;
+    let output = `
 <section>
     <div class="container-fluid mt-5 px-0" style="max-width: 920px;">
         <div class="card">
             <div class="card-body">
-                <h5 class="mb-4">Вопрос: выбор одного или нескольких вариантов ответа</h5>
+                <h5 class="mb-4">Вопрос: выбор только одного варианта ответа</h5>
                 <div class="row mb-4">
                     <div class="col-md-3">Текст Вопроса</div>
                     <div class="col">
@@ -13,7 +16,7 @@ export let q_model_body_3 = `
                 </div>
                 <div class="row mb-4">
                     <div class="col-md-3">Варианты ответа</div>
-                    <div class="col q_3_choices_panel" id="q_3_choices_panel">
+                    <div class="col q_3_choices_panel" id="`+classNam+`">
 
                         <div>
                             <div class="d-flex q_3_closable px-0 mt-2">
@@ -32,8 +35,8 @@ export let q_model_body_3 = `
                 <div class="row mb-2">
                     <div class="col-md-3"></div>
                     <div class="col">
-                    <i type="button" class="bi bi-plus-square-fill h3 text_survey" id="q_3_add"></i>
-                    <input type="hidden" value="1" id="q_3_q_3_total_chq">
+                    <i type="button" class="bi bi-plus-square-fill h3 text_survey"  id="`+tagNam+`"></i>
+                    <input type="hidden" value="1" id="m_3_counter_q_`+qNum+`">
                 </div>
                 </div>
                 <div class="d-flex align-items-center mb-2">
@@ -51,4 +54,8 @@ export let q_model_body_3 = `
         </div>
     </div>
 
-</section>`
+</section>`;
+    return output;
+}
+
+export {q_model_body_3}
