@@ -1,0 +1,18 @@
+.bg_survey {
+    background-color: #7E202C;
+    border-color: #7E202C;
+}
+.text_survey {
+    color: #7E202C;
+}
+.bg-survey {
+    background-color: #7E202C;
+    border-color: #7E202C;
+    color: white;
+}
+.bg-survey:hover{
+    color: gray;
+}
+.text-survey {
+    color: #7E202C;
+}
