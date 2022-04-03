@@ -4,7 +4,7 @@ function q_model_body_2(mNum, qNum) {
     let classNam = "m_"+mNum+"_choices_panel_q_"+qNum;
     let output = `
 <section>
-    <div class="container-fluid mt-5 px-0" style="max-width: 920px;">
+    <div class="container-fluid mt-5 px-0 m_2_mdeletebody_q_`+qNum+` " style="max-width: 920px;">
         <div class="card">
             <div class="card-body">
                 <h5 class="mb-4">Вопрос: выбор только одного варианта ответа</h5>
@@ -46,8 +46,29 @@ function q_model_body_2(mNum, qNum) {
                     </p>
                 </div>
                 <div class="d-flex  mb-2">
-                    <button class="btn btn-primary me-3" style="background-color: #7E202C; border-color: #7E202C;">Удалить Вопрос</button>
+                    <!-- Button trigger modal -->
+                        <button type="button" class="btn bg-survey me-3" data-bs-toggle="modal" data-bs-target="#m_2_modal_q_`+qNum+`">
+                        Удалить Вопрос
+                        </button>
                     <buttion class="btn btn-primary" style="background-color: #7E202C; border-color: #7E202C;">Не задавать Вопрос</buttion>
+                    <!-- Modal -->
+                    <div class="modal fade btn" id="m_2_modal_q_`+qNum+`" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog  modal-dialog-centered">
+                        <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            ...
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <button type="button" class="btn bg-survey" id="m_2_mdelete_q_`+qNum+`" data-bs-dismiss="modal">Delete</button>
+                        </div>
+                        </div>
+                    </div>
+                    </div>
                 </div>
             </div>
 

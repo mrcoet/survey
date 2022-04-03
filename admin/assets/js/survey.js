@@ -62,9 +62,18 @@ function add_model_2(){
             counter = parseInt(counter) - 1;
             $("#m_2_counter_q_"+lastElement).val(counter);
         });
-        
      
     });
+    
+    $("#m_2_mdelete_q_"+lastElement).on('click', function(){
+        console.log('fsfsdfwsssss');
+        $(".m_2_mdeletebody_q_"+lastElement).parent().empty();
+        deleteOneTinker(lastElement);
+        console.log($('#tinkerArr').val());
+    });
+
+
+
 }
 
 // Model 3  ==================================================
@@ -136,9 +145,18 @@ function getTinker(){
     console.log(value_arr);
     var last_element = value_arr[value_arr.length - 1];
     last_element = parseInt(last_element) + 1;
-    value_arr.push(last_element+1)
+    value_arr.push(last_element)
     $('#tinkerArr').val(JSON.stringify(value_arr));
     return last_element;
+}
+
+
+function deleteOneTinker(num){
+    console.log('Deleteeeeeeeeeeeeeee');
+    var value_arr = $('#tinkerArr').val();
+    value_arr = JSON.parse(value_arr);
+    value_arr = value_arr.filter(e => e !== num)
+    $('#tinkerArr').val(JSON.stringify(value_arr));
 }
 
 
@@ -190,3 +208,4 @@ let addChoiceElementQ2 = function(mNum, qNum) {
 
 // console.log(value_obj);
 // console.log(value_arr);
+
