@@ -1,0 +1,159 @@
+SET FOREIGN_KEY_CHECKS = 0;
+SET GROUP_CONCAT_MAX_LEN=32768;
+SET @tables = NULL;
+SELECT GROUP_CONCAT('`', table_name, '`') INTO @tables
+  FROM information_schema.tables
+  WHERE table_schema = (SELECT DATABASE());
+SELECT IFNULL(@tables,'dummy') INTO @tables;
+
+SET @tables = CONCAT('DROP TABLE IF EXISTS ', @tables);
+PREPARE stmt FROM @tables;
+EXECUTE stmt;
+DEALLOCATE PREPARE stmt;
+SET FOREIGN_KEY_CHECKS = 1;
+
+
+CREATE TABLE users (
+    user_id INT AUTO_INCREMENT,
+    first_name VARCHAR(255) NOT NULL,
+    last_name VARCHAR(255) NOT NULL,
+    email VARCHAR(255),
+    blocked BOOLEAN NOT NULL,
+    PRIMARY KEY(user_id)
+);
+
+CREATE TABLE users_roles (
+    user_role_id INT PRIMARY KEY AUTO_INCREMENT,
+    user_id INT NOT NULL,
+    role_id INT NOT NULL,
+    FOREIGN KEY (user_id) REFERENCES users(user_id) ON DELETE CASCADE,
+    CHECK(role_id >= 0 AND role_id < 3)
+
+);
+
+CREATE TABLE surveys (
+    survey_id INT PRIMARY KEY AUTO_INCREMENT,
+    title VARCHAR(255) NOT NULL,
+    academic_year VARCHAR(255) NOT NULL,
+    start_date DATE NOT NULL,
+    actual_start_date DATE NOT NULL,
+    end_date DATE NOT NULL,
+    actual_end_date DATE NOT NULL,
+    active BOOLEAN NOT NULL,
+    admin_id INT NOT NULL,
+    FOREIGN KEY(admin_id) REFERENCES users(user_id) ON DELETE CASCADE
+);
+
+CREATE TABLE survey_operators(
+    survey_operator_id INT PRIMARY KEY AUTO_INCREMENT,
+    survey_id INT NOT NULL,
+    operator_id INT NOT NULL,
+    FOREIGN KEY (survey_id) REFERENCES surveys(survey_id) ON DELETE CASCADE,
+    FOREIGN KEY (operator_id) REFERENCES users(user_id) ON DELETE CASCADE
+);
+
+CREATE TABLE subdivisions(
+    subdivision_id INT PRIMARY KEY AUTO_INCREMENT,
+    sub_name VARCHAR(255) NOT NULL,
+    sub_desc MEDIUMTEXT
+);
+
+CREATE TABLE disciplines(
+    discipline_id INT PRIMARY KEY AUTO_INCREMENT,
+    dis_name VARCHAR(255) NOT NULL,
+    dis_desc MEDIUMTEXT
+);
+
+CREATE TABLE surveys_disciplines(
+    survey_discipline_id INT PRIMARY KEY AUTO_INCREMENT,
+    survey_id INT NOT NULL,
+    subdivision_id INT NOT NULL,
+    discipline_id INT NOT NULL,
+    FOREIGN KEY (survey_id) REFERENCES surveys(survey_id) ON DELETE CASCADE,
+    FOREIGN KEY (subdivision_id) REFERENCES subdivisions(subdivision_id) ON DELETE CASCADE,
+    FOREIGN KEY (discipline_id) REFERENCES disciplines(discipline_id) ON DELETE CASCADE
+);
+
+CREATE TABLE q_model_4(
+    question_id INT PRIMARY KEY AUTO_INCREMENT,
+    question_text MEDIUMTEXT NOT NULL,
+    require_m BOOLEAN NOT NULL,
+    active_m BOOLEAN NOT NULL,
+    survey_id INT NOT NULL,
+    FOREIGN KEY (survey_id) REFERENCES surveys(survey_id) ON DELETE CASCADE
+);
+
+CREATE TABLE q_model_1(
+    question_id INT PRIMARY KEY AUTO_INCREMENT,
+    question_text MEDIUMTEXT NOT NULL,
+    min_score INT NOT NULL,
+    min_score_desc VARCHAR(255) NOT NULL,
+    max_score INT NOT NULL,
+    max_score_desc VARCHAR(255) NOT NULL,
+    require_m BOOLEAN NOT NULL,
+    active_m BOOLEAN NOT NULL,
+    survey_id INT NOT NULL,
+    FOREIGN KEY (survey_id) REFERENCES surveys(survey_id) ON DELETE CASCADE
+);
+
+CREATE TABLE q_model_2_3(
+    question_id INT PRIMARY KEY AUTO_INCREMENT,
+    require_m BOOLEAN NOT NULL,
+    active_m BOOLEAN NOT NULL,
+    many_m BOOLEAN NOT NULL,
+    survey_id INT NOT NULL,
+    FOREIGN KEY (survey_id) REFERENCES surveys(survey_id) ON DELETE CASCADE
+);
+
+CREATE TABLE choices(
+    choice_id INT PRIMARY KEY AUTO_INCREMENT,
+    choice_text VARCHAR(255) NOT NULL,
+    question_id INT NOT NULL,
+    FOREIGN KEY (question_id) REFERENCES q_model_2_3(question_id) ON DELETE CASCADE 
+);
+
+
+CREATE TABLE user_answers(
+    user_answer_id INT PRIMARY KEY AUTO_INCREMENT,
+    survey_id INT NOT NULL,
+    FOREIGN KEY (survey_id) REFERENCES surveys(survey_id) ON DELETE CASCADE 
+);
+
+CREATE TABLE answers_model_1(
+    answer_id INT PRIMARY KEY AUTO_INCREMENT,
+    answer_rate INT NOT NULL,
+    question_id INT NOT NULL,
+    user_answer_id INT NOT NULL,
+    FOREIGN KEY (user_answer_id) REFERENCES user_answers(user_answer_id) ON DELETE CASCADE,
+    FOREIGN KEY (question_id) REFERENCES q_model_1(question_id) ON DELETE CASCADE
+);
+
+CREATE TABLE answers_model_2(
+    answer_id INT PRIMARY KEY AUTO_INCREMENT,
+    choice_id INT NOT NULL,
+    question_id INT NOT NULL,
+    user_answer_id INT NOT NULL,
+    FOREIGN KEY (user_answer_id) REFERENCES user_answers(user_answer_id) ON DELETE CASCADE,
+    FOREIGN KEY (choice_id) REFERENCES choices(choice_id) ON DELETE CASCADE,
+    FOREIGN KEY (question_id) REFERENCES q_model_2_3(question_id) ON DELETE CASCADE
+);
+
+CREATE TABLE answers_model_3(
+    answer_id INT PRIMARY KEY AUTO_INCREMENT,
+    choice_id INT NOT NULL,
+    question_id INT NOT NULL,
+    user_answer_id INT NOT NULL,
+    FOREIGN KEY (user_answer_id) REFERENCES user_answers(user_answer_id) ON DELETE CASCADE,
+    FOREIGN KEY (choice_id) REFERENCES choices(choice_id) ON DELETE CASCADE,
+    FOREIGN KEY (question_id) REFERENCES q_model_2_3(question_id) ON DELETE CASCADE
+);
+
+CREATE TABLE answers_model_4(
+    answer_id INT PRIMARY KEY AUTO_INCREMENT,
+    answer_text MEDIUMTEXT NOT NULL,
+    question_id INT NOT NULL,
+    user_answer_id INT NOT NULL,
+    FOREIGN KEY (user_answer_id) REFERENCES user_answers(user_answer_id) ON DELETE CASCADE,
+    FOREIGN KEY (question_id) REFERENCES q_model_2_3(question_id) ON DELETE CASCADE
+);
+
