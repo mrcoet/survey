@@ -31,16 +31,17 @@ CREATE TABLE users_roles (
 
 );
 
+
 CREATE TABLE surveys (
-    survey_id INT PRIMARY KEY,
-    title VARCHAR(255) NOT NULL,
-    academic_year VARCHAR(255) NOT NULL,
-    start_date DATE NOT NULL,
-    actual_start_date DATE NOT NULL,
-    end_date DATE NOT NULL,
-    actual_end_date DATE NOT NULL,
-    active BOOLEAN NOT NULL,
-    admin_id INT NOT NULL,
+    survey_id           INT PRIMARY KEY,
+    title               VARCHAR(255) NOT NULL,
+    study_year_id       YEAR NOT NULL,
+    start_date_m        DATE NOT NULL,
+    actual_start_date   DATE NOT NULL,
+    end_date_m          DATE NOT NULL,
+    actual_end_date     DATE NOT NULL,
+    active_m            BOOLEAN NOT NULL,
+    admin_id            INT NOT NULL,
     FOREIGN KEY(admin_id) REFERENCES users(user_id) ON DELETE CASCADE
 );
 
@@ -80,6 +81,7 @@ CREATE TABLE q_model_4(
     require_m BOOLEAN NOT NULL,
     active_m BOOLEAN NOT NULL,
     survey_id INT NOT NULL,
+    m_type VARCHAR(255) NOT NULL,
     FOREIGN KEY (survey_id) REFERENCES surveys(survey_id) ON DELETE CASCADE
 );
 
@@ -93,6 +95,7 @@ CREATE TABLE q_model_1(
     require_m BOOLEAN NOT NULL,
     active_m BOOLEAN NOT NULL,
     survey_id INT NOT NULL,
+    m_type VARCHAR(255) NOT NULL,
     FOREIGN KEY (survey_id) REFERENCES surveys(survey_id) ON DELETE CASCADE
 );
 
@@ -102,6 +105,7 @@ CREATE TABLE q_model_2_3(
     active_m BOOLEAN NOT NULL,
     many_m BOOLEAN NOT NULL,
     survey_id INT NOT NULL,
+    m_type VARCHAR(255) NOT NULL,
     FOREIGN KEY (survey_id) REFERENCES surveys(survey_id) ON DELETE CASCADE
 );
 
@@ -157,7 +161,7 @@ CREATE TABLE answers_model_4(
     FOREIGN KEY (question_id) REFERENCES q_model_2_3(question_id) ON DELETE CASCADE
 );
 
-CREATE TABLE study_year(
+CREATE TABLE study_years(
     study_year_id INT PRIMARY KEY AUTO_INCREMENT,
     study_year YEAR UNIQUE NOT NULL
 );

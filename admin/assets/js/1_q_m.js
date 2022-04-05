@@ -15,19 +15,19 @@ function q_model_body_1(nNum, qNum){
                 </div>
                 <div class="row mb-4">
                     <div class="col-md-3">Минимальный балл</div>
-                    <div class="col-md-1"><input name="max_`+qNum+`" type="text" class="form-control"></div>
+                    <div class="col-md-1"><input name="min_`+qNum+`" type="text" class="form-control"></div>
                     <div class="col">
                         <div class="d-flex">
-                            Характеристика Минимального балла <input name="max_desc_`+qNum+`" type="text" class="form-control w-50 ms-2">
+                            Характеристика Минимального балла <input name="min_desc_`+qNum+`" type="text" class="form-control w-50 ms-2">
                         </div>
                     </div>
                 </div>
                 <div class="row mb-2">
                     <div class="col-md-3">Максимальный балл</div>
-                    <div class="col-md-1"><input name="min_`+qNum+`" type="text" class="form-control"></div>
+                    <div class="col-md-1"><input name="max_`+qNum+`" type="text" class="form-control"></div>
                     <div class="col">
                         <div class="d-flex justify-items-between align-items-center">
-                            <p>Характеристика максимального балла</p> <input name="min_desc_`+qNum+`" type="text" class="form-control w-50 ms-2">
+                            <p>Характеристика максимального балла</p> <input name="max_desc_`+qNum+`" type="text" class="form-control w-50 ms-2">
                         </div>
                     </div>
                 </div>

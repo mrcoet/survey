@@ -26,7 +26,7 @@ $survey_admins = $survey_adminoperators_statement->fetchAll();
 $survey_adminoperators_statement->closeCursor();
 
 
-$query_study_years = "SELECT * FROM study_year";
+$query_study_years = "SELECT * FROM study_years";
 $study_years_statement = $db->prepare($query_study_years);
 $study_years_statement->execute();
 $study_years = $study_years_statement->fetchAll();
@@ -50,7 +50,7 @@ $study_years_statement->closeCursor();
                     <div class="col">
                         <select class="form-select" name="study_year" aria-label="Default select example">
                             <?PHP foreach($study_years as $study_year): ?>
-                            <option value="<?php echo $study_year['study_year_id'] ?>"><?php echo $study_year['study_year']  ?></option>
+                            <option value="<?php echo $study_year['study_year'] ?>"><?php echo $study_year['study_year']  ?></option>
                             <?php endforeach ?>
                         </select>
                     </div>
@@ -61,7 +61,7 @@ $study_years_statement->closeCursor();
                 </div>
                 <div class="row mb-3">
                     <div class="col-3">Дата Окончамия опроса</div>
-                    <div class="col"><input type="date" name="end_name" class="form-control"></div>
+                    <div class="col"><input type="date" name="end_date" class="form-control"></div>
                 </div>
                 <div class="row mb-3">
                     <div class="col-3">Администратор опроса</div>
