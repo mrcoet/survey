@@ -8,7 +8,7 @@
 .bg-survey {
     background-color: #7E202C;
     border-color: #7E202C;
-    color: white;
+    color: #ffffff;
 }
 .bg-survey:hover{
     background-color: #982232;
@@ -16,4 +16,14 @@
 }
 .text-survey {
     color: #7E202C;
+}
+
+.bg-activate {
+    background-color: #187918;
+    border-color: #187918;
+    color: #ffffff;
+}
+.bg-activate:hover{
+    background-color: #1b8f1b;
+    color: white;
 }

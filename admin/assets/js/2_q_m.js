@@ -50,7 +50,10 @@ function q_model_body_2(mNum, qNum) {
                         <button type="button" class="btn bg-survey me-3" data-bs-toggle="modal" data-bs-target="#m_2_modal_q_`+qNum+`">
                         Удалить Вопрос
                         </button>
-                    <buttion class="btn btn-primary" style="background-color: #7E202C; border-color: #7E202C;">Не задавать Вопрос</buttion>
+                    
+                    <buttion class="btn bg-survey" id="m_2_activate_q_`+qNum+`">Не задавать Вопрос</buttion>
+                    <input hidden id="db_m_2_activate_q_`+qNum+`" value="1">
+                    
                     <!-- Modal -->
                     <div class="modal fade btn" id="m_2_modal_q_`+qNum+`" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                     <div class="modal-dialog  modal-dialog-centered">

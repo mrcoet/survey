@@ -19,6 +19,32 @@ function add_model_1(){
     let lastElement = getTinker();
     $('#survey-body').append(q_model_body_1(1, lastElement));
 
+    $("#m_1_mdelete_q_"+lastElement).on('click', function(){
+        console.log('fsfsdfwsssss');
+        $(".m_1_mdeletebody_q_"+lastElement).parent().empty();
+        deleteOneTinker(lastElement);
+        console.log($('#tinkerArr').val());
+    });
+
+    $("#m_1_activate_q_"+lastElement).on('click', function(){
+        let actSwitch = $("#db_m_1_activate_q_"+lastElement).val();
+        actSwitch = parseInt(actSwitch);
+        if (actSwitch == 1) {
+            console.log("#db_m_1_activate_q_"+lastElement+" was: "+actSwitch);
+            $(this).text("Activate The Question");
+            $(this).removeClass();
+            $(this).addClass("btn bg-activate");
+            $("#db_m_1_activate_q_"+lastElement).val("0");
+        } else if (actSwitch == 0) {
+            console.log("#db_m_1_activate_q_"+lastElement+" was: "+actSwitch);
+            $(this).text("Не задавать Вопрос");
+            $(this).removeClass();
+            $(this).addClass("btn bg-survey");
+            $("#db_m_1_activate_q_"+lastElement).val("1");
+        }
+
+    });
+
 }
 
 
@@ -72,6 +98,25 @@ function add_model_2(){
         console.log($('#tinkerArr').val());
     });
 
+    $("#m_2_activate_q_"+lastElement).on('click', function(){
+        let actSwitch = $("#db_m_2_activate_q_"+lastElement).val();
+        actSwitch = parseInt(actSwitch);
+        if (actSwitch == 1) {
+            console.log("#db_m_2_activate_q_"+lastElement+" was: "+actSwitch);
+            $(this).text("Activate The Question");
+            $(this).removeClass();
+            $(this).addClass("btn bg-activate");
+            $("#db_m_2_activate_q_"+lastElement).val("0");
+        } else if (actSwitch == 0) {
+            console.log("#db_m_2_activate_q_"+lastElement+" was: "+actSwitch);
+            $(this).text("Не задавать Вопрос");
+            $(this).removeClass();
+            $(this).addClass("btn bg-survey");
+            $("#db_m_2_activate_q_"+lastElement).val("1");
+        }
+
+    });
+
 
 
 }
@@ -118,6 +163,32 @@ function add_model_3(){
         
      
     });
+
+    $("#m_3_mdelete_q_"+lastElement).on('click', function(){
+        console.log('fsfsdfwsssss');
+        $(".m_3_mdeletebody_q_"+lastElement).parent().empty();
+        deleteOneTinker(lastElement);
+        console.log($('#tinkerArr').val());
+    });
+
+    $("#m_3_activate_q_"+lastElement).on('click', function(){
+        let actSwitch = $("#db_m_3_activate_q_"+lastElement).val();
+        actSwitch = parseInt(actSwitch);
+        if (actSwitch == 1) {
+            console.log("#db_m_3_activate_q_"+lastElement+" was: "+actSwitch);
+            $(this).text("Activate The Question");
+            $(this).removeClass();
+            $(this).addClass("btn bg-activate");
+            $("#db_m_3_activate_q_"+lastElement).val("0");
+        } else if (actSwitch == 0) {
+            console.log("#db_m_3_activate_q_"+lastElement+" was: "+actSwitch);
+            $(this).text("Не задавать Вопрос");
+            $(this).removeClass();
+            $(this).addClass("btn bg-survey");
+            $("#db_m_3_activate_q_"+lastElement).val("1");
+        }
+
+    });
 }
 
 
@@ -127,6 +198,32 @@ function add_model_4(){
     let lastElement = getTinker();
     
     $('#survey-body').append(q_model_body_4(4, lastElement));
+
+    $("#m_4_mdelete_q_"+lastElement).on('click', function(){
+        console.log('fsfsdfwsssss');
+        $(".m_4_mdeletebody_q_"+lastElement).parent().empty();
+        deleteOneTinker(lastElement);
+        console.log($('#tinkerArr').val());
+    });
+
+    $("#m_4_activate_q_"+lastElement).on('click', function(){
+        let actSwitch = $("#db_m_4_activate_q_"+lastElement).val();
+        actSwitch = parseInt(actSwitch);
+        if (actSwitch == 1) {
+            console.log("#db_m_4_activate_q_"+lastElement+" was: "+actSwitch);
+            $(this).text("Activate The Question");
+            $(this).removeClass();
+            $(this).addClass("btn bg-activate");
+            $("#db_m_4_activate_q_"+lastElement).val("0");
+        } else if (actSwitch == 0) {
+            console.log("#db_m_4_activate_q_"+lastElement+" was: "+actSwitch);
+            $(this).text("Не задавать Вопрос");
+            $(this).removeClass();
+            $(this).addClass("btn bg-survey");
+            $("#db_m_4_activate_q_"+lastElement).val("1");
+        }
+
+    });
 }
 
 
