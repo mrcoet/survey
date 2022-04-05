@@ -1,3 +1,20 @@
+<?php 
+
+$query_disiplines = "SELECT * FROM disciplines";
+$query_subdivisions = "SELECT * FROM subdivisions";
+
+$statement = $db->prepare($query_disiplines);
+$statement->execute();
+$disiplines = $statement->fetchAll();
+$statement->closeCursor();
+
+$statement = $db->prepare($query_subdivisions);
+$statement->execute();
+$subs = $statement->fetchAll();
+$statement->closeCursor()
+
+?>
+
 <section>
     <div class="container-fluid mt-5 px-0" style="max-width: 920px;">
         <div class="card">
@@ -12,40 +29,29 @@
                     <div>
                     <div class="row mb-3 closeable-panel-1">
                         <div class="col-5">
-                            <select class="form-select" aria-label="Default select example">
-                                <option selected>Open this select menu</option>
-                                <option value="1">One</option>
-                                <option value="2">Two</option>
-                                <option value="3">Three</option>
+                            <select class="form-select" name="survey_dis_1" aria-label="Default select example">
+                            <?php foreach($disiplines as $dis): ?>
+                                <option value="<?PHP echo $dis['discipline_id'] ?>"><?php echo $dis['dis_name'] ?></option>
+                            <?php endforeach; ?>    
                             </select>
                         </div>
 
                         <div class="col-5">
                             <div class="form-group">
-                                <select class="selectpicker form-control" data-width="auto" name="nums[]"  multiple data-selected-text-format="count > 3">
-                                    <option value="1">One</option>
-                                    <option value="2">Two</option>
-                                    <option value="3">Three</option>
-                                    <option value="4">Four</option>
-                                    <option value="4">Four</option>
-                                    <option value="4">Four</option>
-                                    <option value="4">Four</option>
-                                    <option value="4">Four</option>
-                                    <option value="4">Four</option>
-                                    <option value="4">Four</option>
-                                    <option value="4">Four</option>
-                                    <option value="4">Four</option>
+                                <select class="selectpicker form-control" data-width="auto" name="survey_subs_1[]"  multiple data-selected-text-format="count > 3">
+                                <?php foreach($subs as $sub): ?>
+                                    <option value="<?PHP echo $sub['subdivision_id'] ?>"><?php echo $sub['sub_name'] ?></option>
+                                <?php endforeach; ?> 
                                 </select>
                             </div>
                         </div>
-                        <div class="col-2">
-                        </div>
+                 
                     </div>
                     </div>
                 </div>
                 <div class="d-flex  mb-3 mt-5">
-                    <button class="btn btn-primary me-3 add" style="background-color: #7E202C; border-color: #7E202C;">Добавить дисциплину, практику</button>
-                    <input type="hidden" value="1" id="total_chq">
+                    <button type="button" class="btn btn-primary me-3 add" style="background-color: #7E202C; border-color: #7E202C;">Добавить дисциплину, практику</button>
+                    <input type="hidden" name="dis_sub_counter" id="dis_sub_counter" value="1">
                 </div>
             </div>
 
@@ -61,8 +67,8 @@
 <script type="text/javascript">
     var closeit = function(param) {
         $(param).parents(".closeable-panel-1").parent().empty();
-        var new_chq_no = parseInt($('#total_chq').val()) -1;
-        $('#total_chq').val(new_chq_no);
+        // var new_dis_sub_counter = parseInt($('#dis_sub_counter').val()) -1;
+        // $('#dis_sub_counter').val(new_dis_sub_counter);
     };
 </script>
 
@@ -73,34 +79,24 @@
 
     function add() {
         console.log('entered');
-        var new_chq_no = parseInt($('#total_chq').val()) + 1;
+        var new_dis_sub_counter = parseInt($('#dis_sub_counter').val()) + 1;
         var new_input = `
         <div>
         <div class="row mb-3 closeable-panel-1">
                         <div class="col-5">
-                            <select class="form-select" aria-label="Default select example">
-                                <option selected>Open this select menu</option>
-                                <option value="1">One</option>
-                                <option value="2">Two</option>
-                                <option value="3">Three</option>
+                            <select class="form-select" name="survey_dis_`+new_dis_sub_counter+`" aria-label="Default select example">
+                            <?php foreach($disiplines as $dis): ?>
+                                <option value="<?PHP echo $dis['discipline_id'] ?>"><?php echo $dis['dis_name'] ?></option>
+                            <?php endforeach; ?>
                             </select>
                         </div>
 
                         <div class="col-5">
                             <div class="form-group">
-                                <select class="selectpicker form-control" data-width="auto" name="nums[]" multiple data-selected-text-format="count > 3">
-                                    <option value="1">One</option>
-                                    <option value="2">Two</option>
-                                    <option value="3">Three</option>
-                                    <option value="4">Four</option>
-                                    <option value="4">Four</option>
-                                    <option value="4">Four</option>
-                                    <option value="4">Four</option>
-                                    <option value="4">Four</option>
-                                    <option value="4">Four</option>
-                                    <option value="4">Four</option>
-                                    <option value="4">Four</option>
-                                    <option value="4">Four</option>
+                                <select class="selectpicker form-control" data-width="auto" name="survey_subs_`+new_dis_sub_counter+`[]" multiple data-selected-text-format="count > 3">
+                                <?php foreach($subs as $sub): ?>
+                                    <option value="<?PHP echo $sub['subdivision_id'] ?>"><?php echo $sub['sub_name'] ?></option>
+                                <?php endforeach; ?> 
                                 </select>
                             </div>
                         </div>
@@ -113,7 +109,7 @@
 
         $('#choices-panel-1').append(new_input);
 
-        $('#total_chq').val(new_chq_no);
+        $('#dis_sub_counter').val(new_dis_sub_counter);
         $(document).ready(function() {
             $('.selectpicker').selectpicker();
         });

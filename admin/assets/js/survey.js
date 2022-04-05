@@ -71,7 +71,7 @@ function add_model_2(){
         let new_input = `
         <div>
             <div class="d-flex `+classNam+`_c_`+counter+` px-0  mt-2">
-                <input type="text" class="form-control w-50">
+                <input name="choice_q_`+lastElement+`_c_`+counter+`" type="text" class="form-control w-50">
                 <button type="button"  class="btn btn-primary mx-3" id="`+btnId+`" style="background-color: #7E202C; border-color: #7E202C;"><i class="bi bi-trash h6"></i></button>
             </div>
         </div> 
@@ -143,7 +143,7 @@ function add_model_3(){
         let new_input = `
         <div>
             <div class="d-flex `+classNam+`_c_`+counter+` px-0  mt-2">
-                <input type="text" class="form-control w-50">
+                <input name="choice_q_`+lastElement+`_c_`+counter+`" type="text" class="form-control w-50">
                 <button type="button"  class="btn btn-primary mx-3" id="`+btnId+`" style="background-color: #7E202C; border-color: #7E202C;"><i class="bi bi-trash h6"></i></button>
             </div>
         </div> 
@@ -305,4 +305,5 @@ let addChoiceElementQ2 = function(mNum, qNum) {
 
 // console.log(value_obj);
 // console.log(value_arr);
+
 

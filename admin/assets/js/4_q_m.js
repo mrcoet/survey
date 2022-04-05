@@ -9,12 +9,12 @@ function q_model_body_4(mNum, qNum){
                         <div class="row mb-4">
                             <div class="col-md-3">Текст Вопроса</div>
                             <div class="col">
-                            <textarea class="form-control" id="exampleFormControlTextarea1" rows="2"></textarea>
+                            <textarea name="title_`+qNum+`" class="form-control" id="exampleFormControlTextarea1" rows="2"></textarea>
                             </div>
                         </div>
                         <div class="d-flex align-items-center mb-2">
                         <p>
-                        <input class="form-check-input" type="checkbox">
+                        <input name="require_`+qNum+`" class="form-check-input" type="checkbox">
                         ответ обязателет</p>
                         </div>
                         <div class="d-flex  mb-2">
@@ -25,7 +25,7 @@ function q_model_body_4(mNum, qNum){
                         
                         
                         <buttion class="btn bg-survey"  id="m_4_activate_q_`+qNum+`">Не задавать Вопрос</buttion>
-                        <input hidden id="db_m_4_activate_q_`+qNum+`" value="1">
+                        <input type="hidden" name="active_`+qNum+`" id="db_m_4_activate_q_`+qNum+`" value="1">
                         
                         
                         <!-- Modal -->

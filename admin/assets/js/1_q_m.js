@@ -10,30 +10,30 @@ function q_model_body_1(nNum, qNum){
                 <div class="row mb-4">
                     <div class="col-md-3">Текст Вопроса</div>
                     <div class="col">
-                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="2"></textarea>
+                    <textarea name="title_`+qNum+`" required class="form-control" id="exampleFormControlTextarea1" rows="2"></textarea>
                     </div>
                 </div>
                 <div class="row mb-4">
                     <div class="col-md-3">Минимальный балл</div>
-                    <div class="col-md-1"><input type="text" class="form-control"></div>
+                    <div class="col-md-1"><input name="max_`+qNum+`" type="text" class="form-control"></div>
                     <div class="col">
                         <div class="d-flex">
-                            Характеристика Минимального балла <input type="text" class="form-control w-50 ms-2">
+                            Характеристика Минимального балла <input name="max_desc_`+qNum+`" type="text" class="form-control w-50 ms-2">
                         </div>
                     </div>
                 </div>
                 <div class="row mb-2">
                     <div class="col-md-3">Максимальный балл</div>
-                    <div class="col-md-1"><input type="text" class="form-control"></div>
+                    <div class="col-md-1"><input name="min_`+qNum+`" type="text" class="form-control"></div>
                     <div class="col">
                         <div class="d-flex justify-items-between align-items-center">
-                            <p>Характеристика максимального балла</p> <input type="text" class="form-control w-50 ms-2">
+                            <p>Характеристика максимального балла</p> <input name="min_desc_`+qNum+`" type="text" class="form-control w-50 ms-2">
                         </div>
                     </div>
                 </div>
                 <div class="d-flex align-items-center mb-2">
                 <p>
-                <input class="form-check-input" type="checkbox">
+                <input name="require_`+qNum+`" class="form-check-input" type="checkbox">
                 ответ обязателет</p>
                 </div>
                 <div class="d-flex  mb-2">
@@ -43,7 +43,7 @@ function q_model_body_1(nNum, qNum){
                         </button>
                 
                 <buttion class="btn bg-survey"  id="m_1_activate_q_`+qNum+`">Не задавать Вопрос</buttion>
-                <input hidden id="db_m_1_activate_q_`+qNum+`" value="1">
+                <input hidden name="active_`+qNum+`" id="db_m_1_activate_q_`+qNum+`" value="1">
                 
                 
                 <!-- Modal -->
@@ -59,7 +59,7 @@ function q_model_body_1(nNum, qNum){
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                        <button type="button" class="btn bg-survey" id="m_1_mdelete_q_`+qNum+`" data-bs-dismiss="modal">Delete</button>
+                        <input type="hidden" name="m_type_`+qNum+`" value="m_1">
                     </div>
                     </div>
                 </div>

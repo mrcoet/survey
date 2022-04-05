@@ -11,7 +11,7 @@ function q_model_body_2(mNum, qNum) {
                 <div class="row mb-4">
                     <div class="col-md-3">Текст Вопроса</div>
                     <div class="col">
-                        <textarea class="form-control" id="exampleFormControlTextarea1" rows="2"></textarea>
+                        <textarea name="title`+qNum+`" class="form-control" id="exampleFormControlTextarea1" rows="2"></textarea>
                     </div>
                 </div>
                 <div class="row mb-4">
@@ -20,12 +20,12 @@ function q_model_body_2(mNum, qNum) {
 
                         <div>
                             <div class="d-flex q_2_closable px-0 mt-2">
-                                <input type="text" class="form-control w-50">
+                                <input name="choice_q_`+qNum+`_c_1" type="text" class="form-control w-50">
                             </div>
                         </div>
                         <div>
                             <div class="d-flex q_2_closable px-0 mt-2">
-                                <input type="text" class="form-control w-50">
+                                <input name="choice_q_`+qNum+`_c_2" type="text" class="form-control w-50">
                             </div>
                         </div>
                     
@@ -35,13 +35,13 @@ function q_model_body_2(mNum, qNum) {
                 <div class="row mb-2">
                     <div class="col-md-3"></div>
                     <div class="col">
-                    <i type="button" class="bi bi-plus-square-fill h3 text_survey"  id="`+tagNam+`"></i>
-                    <input type="hidden" value="1" id="m_2_counter_q_`+qNum+`">
+                    <i type="button" type="button" class="bi bi-plus-square-fill h3 text_survey"  id="`+tagNam+`"></i>
+                    <input type="hidden" value="2" name="choices_counter_`+qNum+`" id="m_2_counter_q_`+qNum+`">
                 </div>
                 </div>
                 <div class="d-flex align-items-center mb-2">
                     <p>
-                        <input class="form-check-input" type="checkbox">
+                        <input name="require_`+qNum+`" class="form-check-input" type="checkbox">
                         ответ обязателет
                     </p>
                 </div>
@@ -52,8 +52,8 @@ function q_model_body_2(mNum, qNum) {
                         </button>
                     
                     <buttion class="btn bg-survey" id="m_2_activate_q_`+qNum+`">Не задавать Вопрос</buttion>
-                    <input hidden id="db_m_2_activate_q_`+qNum+`" value="1">
-                    
+                    <input type="hidden" name="active_`+qNum+`" id="db_m_2_activate_q_`+qNum+`" value="1">
+                    <input type="hidden" name="m_type_`+qNum+`" value="m_2">
                     <!-- Modal -->
                     <div class="modal fade btn" id="m_2_modal_q_`+qNum+`" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                     <div class="modal-dialog  modal-dialog-centered">

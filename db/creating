@@ -16,9 +16,9 @@ SET FOREIGN_KEY_CHECKS = 1;
 CREATE TABLE users (
     user_id INT AUTO_INCREMENT,
     first_name VARCHAR(255) NOT NULL,
-    last_name VARCHAR(255) NOT NULL,
+    last_name VARCHAR(255) NOT NULL UNIQUE,
     email VARCHAR(255),
-    blocked BOOLEAN NOT NULL,
+    blocked BOOLEAN DEFAULT false,
     PRIMARY KEY(user_id)
 );
 
@@ -32,7 +32,7 @@ CREATE TABLE users_roles (
 );
 
 CREATE TABLE surveys (
-    survey_id INT PRIMARY KEY AUTO_INCREMENT,
+    survey_id INT PRIMARY KEY,
     title VARCHAR(255) NOT NULL,
     academic_year VARCHAR(255) NOT NULL,
     start_date DATE NOT NULL,
@@ -75,7 +75,7 @@ CREATE TABLE surveys_disciplines(
 );
 
 CREATE TABLE q_model_4(
-    question_id INT PRIMARY KEY AUTO_INCREMENT,
+    question_id INT PRIMARY KEY,
     question_text MEDIUMTEXT NOT NULL,
     require_m BOOLEAN NOT NULL,
     active_m BOOLEAN NOT NULL,
@@ -84,7 +84,7 @@ CREATE TABLE q_model_4(
 );
 
 CREATE TABLE q_model_1(
-    question_id INT PRIMARY KEY AUTO_INCREMENT,
+    question_id INT PRIMARY KEY,
     question_text MEDIUMTEXT NOT NULL,
     min_score INT NOT NULL,
     min_score_desc VARCHAR(255) NOT NULL,
@@ -97,7 +97,7 @@ CREATE TABLE q_model_1(
 );
 
 CREATE TABLE q_model_2_3(
-    question_id INT PRIMARY KEY AUTO_INCREMENT,
+    question_id INT PRIMARY KEY,
     require_m BOOLEAN NOT NULL,
     active_m BOOLEAN NOT NULL,
     many_m BOOLEAN NOT NULL,
@@ -114,7 +114,7 @@ CREATE TABLE choices(
 
 
 CREATE TABLE user_answers(
-    user_answer_id INT PRIMARY KEY AUTO_INCREMENT,
+    user_answer_id INT PRIMARY KEY,
     survey_id INT NOT NULL,
     FOREIGN KEY (survey_id) REFERENCES surveys(survey_id) ON DELETE CASCADE 
 );
@@ -157,3 +157,7 @@ CREATE TABLE answers_model_4(
     FOREIGN KEY (question_id) REFERENCES q_model_2_3(question_id) ON DELETE CASCADE
 );
 
+CREATE TABLE study_year(
+    study_year_id INT PRIMARY KEY AUTO_INCREMENT,
+    study_year YEAR UNIQUE NOT NULL
+);
